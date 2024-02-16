@@ -89,7 +89,7 @@ for spot in spots:
 
 
 
-st.image("combo.jpg", caption="Sahil ---- Əhmədli", width=150)
+st.image("combo.jpg", caption="Sahil ---- Əhmədli", width=250)
 
 
 st.session_state["office"] = st.selectbox("Hansı filialı tərcih edirsiniz?", ("","Sahil", "Əhmədli - tezlikə"))
