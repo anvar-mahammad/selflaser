@@ -105,7 +105,7 @@ elif st.session_state["laser"] != "" and st.session_state["laser"] == "Diod":
     st.session_state["specialist"] = st.selectbox("Hansı mütəxəssisi tərcih edirsiniz?", ("","Natavan","Nailə"))
     
 if st.session_state["specialist"] != "":
-    st.session_state["date"] = st.date_input("Gəlmək istədiyiniz tarixi seçin", datetime.datetime.today())
+    st.session_state["date"] = st.date_input("Gəlmək istədiyiniz tarixi seçin", datetime.datetime.today(), min_value=datetime.datetime.today())
     st.session_state["date_selected"] = True
 
 if st.session_state["date_selected"]:

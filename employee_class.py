@@ -124,30 +124,30 @@ class Employee:
 
         :param date_str: The date for which to find empty slots, in 'YYYY-MM-DD' format.
         :param duration_minutes: The total duration of free time required, in minutes.
-        :param increment: The increment in minutes for checking the schedule (default is 5 minutes).
         :return: A list of start times (as strings) where the specified duration is free.
         """
-        if date_str not in self.schedule:
-            print(f"No schedule found for {date_str}. The entire day is available.")
-            return []
+        today = datetime.datetime.now()
+        chosen_date = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+        # Compare chosen_date with today's date to determine if we're looking at today
+        if chosen_date.date() == today.date():
+            # If chosen date is today, start looking for slots from the current time onwards
+            work_start = max(today, datetime.datetime.strptime(f"{date_str} 09:00", '%Y-%m-%d %H:%M'))
+        else:
+            # For future dates, start from the beginning of the workday
+            work_start = datetime.datetime.strptime(f"{date_str} 09:00", '%Y-%m-%d %H:%M')
 
-        available_slots = []
-        # Define the work hours
-        work_start = datetime.datetime.strptime(f"{date_str} 09:00", '%Y-%m-%d %H:%M')
         work_end = datetime.datetime.strptime(f"{date_str} 22:00", '%Y-%m-%d %H:%M')
         current_time = work_start
 
+        available_slots = []
         while current_time + timedelta(minutes=duration_minutes) <= work_end:
-            # Assume the slot is free until proven otherwise
             slot_free = True
 
-            # Check each increment within the slot for availability
             for i in range(0, duration_minutes, self.schedule_increment):
                 check_time = current_time + timedelta(minutes=i)
                 check_end = check_time + timedelta(minutes=self.schedule_increment)
                 time_slot_str = f"{check_time.strftime('%H:%M')} - {check_end.strftime('%H:%M')}"
 
-                # If any part of the slot is booked, mark slot as not free
                 if time_slot_str in self.schedule[date_str] and self.schedule[date_str][time_slot_str] != True and \
                         self.schedule[date_str][time_slot_str] != []:
                     slot_free = False
@@ -156,8 +156,8 @@ class Employee:
             if slot_free:
                 available_slots.append(current_time.strftime('%H:%M'))
 
-            # Move to the next potential start time based on increment
             current_time += timedelta(minutes=self.schedule_increment)
 
         return available_slots
+
 
