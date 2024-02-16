@@ -13,7 +13,7 @@ st.set_page_config(
 col1, col2, col3 = st.columns([1,2,1])
 
 with col2:  # Use the middle column for your image
-    st.image("self.png", use_column_width=True)
+    st.image("self.png", use_column_width=True,width=100)
 
 def column_checkbox_maker(col_list, col_length, check_dict):
     print("run")
