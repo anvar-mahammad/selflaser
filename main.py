@@ -10,7 +10,7 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
 )
-col1, col2, col3 = st.columns([1,16,1])
+col1, col2, col3 = st.columns([25,1,25])
 
 with col2:  # Use the middle column for your image
     st.image("self.png")
