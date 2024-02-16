@@ -10,9 +10,9 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
 )
-col1, col2, col3 = st.columns([5,1,5 ])
-# Display the image in the middle column
-with col2:
+col1, col2, col3 = st.columns([1,2,1])
+
+with col2:  # Use the middle column for your image
     st.image("self.png", caption="")
 
 def column_checkbox_maker(col_list, col_length, check_dict):
@@ -88,8 +88,10 @@ for spot in spots:
         st.session_state[spot] = False
 
 
+col1, col2, col3 = st.columns([1,2,1])
 
-st.image("combo.jpg", caption="Sahil ---- Əhmədli", width=250)
+with col2:  # Use the middle column for your image
+    st.image("combo.jpg", caption="Sahil ---- Əhmədli", use_column_width=True)
 
 
 st.session_state["office"] = st.selectbox("Hansı filialı tərcih edirsiniz?", ("","Sahil", "Əhmədli - tezlikə"))
