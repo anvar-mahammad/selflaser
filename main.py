@@ -10,7 +10,7 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
 )
-col1, col2, col3 = st.columns([1,6,1])
+col1, col2, col3 = st.columns([1,16,1])
 
 with col2:  # Use the middle column for your image
     st.image("self.png")
@@ -91,7 +91,7 @@ for spot in spots:
 col1, col2, col3 = st.columns([1,2,1])
 
 with col2:  # Use the middle column for your image
-    st.image("combo.jpg", caption="Sahil ----- Əhmədli", use_column_width=True)
+    st.image("combo.jpg", caption="Sahil             Əhmədli", use_column_width=True)
 
 
 st.session_state["office"] = st.selectbox("Hansı filialı tərcih edirsiniz?", ("","Sahil", "Əhmədli - tezlikə"))
