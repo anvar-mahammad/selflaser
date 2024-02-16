@@ -10,11 +10,11 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
 )
-col1, col2, col3 = st.columns(3)
-
-with col3:  # Use the middle column for your image
-    st.image("self.png")
-
+st.markdown("""
+    <div style="text-align: center;">
+        <img src="self.png" style="max-width: 100%; height: auto;">
+    </div>
+    """, unsafe_allow_html=True)
 def column_checkbox_maker(col_list, col_length, check_dict):
     print("run")
     item_index = 0
