@@ -176,6 +176,9 @@ if st.session_state["time_chosen"]:
                                                                    st.session_state["total_time"])
 
     if st.session_state["times_available"]:
+        if len(tuple(emp.find_empty_slots(st.session_state["date"].strftime("%Y-%m-%d"),
+                                                           st.session_state["total_time"]))) == 0:
+            st.markdown("Bu gün boş zamanımız qalmayıb!")
 
         st.session_state["chosen_slot"] = st.selectbox("Hansı zamanı tərcih edirsiniz?",
                                                        tuple(emp.find_empty_slots(
